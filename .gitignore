@@ -8,4 +8,4 @@ dist/
 build/
 
 .DS_Store
-Thumbs.db
+Thumbs.dbnode_modules
