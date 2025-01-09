@@ -4,8 +4,8 @@ import EventsPage, { eventsLoader } from './pages/EventsPage';
 import EventDetailPage from './pages/EventDetailPage';
 import NewEventPage from './pages/NewEventPage';
 import EditEventPage from './pages/EditEventPage';
-import RootLayout from './pages/RootLayout';
-import EventRoot from './pages/EventRoot';
+import RootLayout from './routers/RootLayout';
+import EventRoot from './routers/EventRoot';
 
 const router = createBrowserRouter([
   {
