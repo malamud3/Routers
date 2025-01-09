@@ -3,6 +3,7 @@ import PageContent from '../components/PageContent';
 
 const ErrorPage = () => {
   const err = useRouteError();
+
   let title = 'An error accurred!';
   let message = 'Something went worng';
 

@@ -3,9 +3,7 @@ import EventsList from '../components/EventsList';
 
 function EventsPage() {
   const data = useLoaderData();
-  if (data.isErr) {
-    return <p>{data.message}</p>;
-  }
+
   const events = data.events;
 
   return <EventsList events={events} />;
