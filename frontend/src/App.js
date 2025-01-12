@@ -14,11 +14,15 @@ import { action as formAction } from './components/EventForm';
 import NewsletterPage, { action as newsletterAction } from './pages/Newsletter';
 import AuthenticationPage, { AuthAction } from './pages/Authentication';
 import LogOutAction from './routers/Logout';
+import { tokenLoader, checkAuthLoader } from './util/auth';
+
 const router = createBrowserRouter([
   {
     path: '/',
     element: <RootLayout />,
     errorElement: <ErrorPage />,
+    id: 'root',
+    loader: tokenLoader,
     children: [
       { index: true, element: <HomePage /> },
       {
@@ -40,10 +44,20 @@ const router = createBrowserRouter([
                 element: <EventDetailPage />,
                 action: deleteEventAction,
               },
-              { path: 'edit', element: <EditEventPage />, action: formAction },
+              {
+                path: 'edit',
+                element: <EditEventPage />,
+                loader: checkAuthLoader,
+                action: formAction,
+              },
             ],
           },
-          { path: 'new', element: <NewEventPage />, action: formAction },
+          {
+            path: 'new',
+            element: <NewEventPage />,
+            loader: checkAuthLoader,
+            action: formAction,
+          },
         ],
       },
       {
