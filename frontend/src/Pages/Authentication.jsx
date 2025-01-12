@@ -7,28 +7,23 @@ function AuthenticationPage() {
 
 export default AuthenticationPage;
 
-export const AuthAction = async (req) => {
-  console.log('dafawe');
+export const AuthAction = async ({ request }) => {
+  const searchParams = new URL(request.url).searchParams;
+  const mode = searchParams.get('mode') || 'login';
 
-  const searchParams = new URL(req.url).searchParams;
-  const mode = searchParams?.get('mode') || 'login';
-
-  if (mode !== 'login' && mode !== 'singup') {
+  if (mode !== 'login' && mode !== 'signup') {
     throw new Response(JSON.stringify({ message: 'Unkow mode' }), {
       status: 422,
     });
   }
 
-  const data = await req.formData();
-  console.log(data);
-  if (!data) {
-    console.log('dafawe');
-  }
+  const data = await request.formData();
   const authData = {
     email: data.get('email'),
     password: data.get('password'),
   };
-  const res = await fetch('http://localhost:8080/' + mode, {
+
+  const response = await fetch('http://localhost:8080/' + mode, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -36,14 +31,16 @@ export const AuthAction = async (req) => {
     body: JSON.stringify(authData),
   });
 
-  if (res.status === 422 || res.status === 401) {
-    return res;
+  if (response.status === 422 || response.status === 401) {
+    return response;
   }
 
-  if (!res.ok) {
+  if (!response.ok) {
     throw new Response(JSON.stringify({ message: 'fetch failed' }), {
       status: 500,
     });
   }
+
+  // soon: manage that token
   return redirect('/');
 };
