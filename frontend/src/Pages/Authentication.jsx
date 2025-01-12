@@ -41,6 +41,11 @@ export const AuthAction = async ({ request }) => {
     });
   }
 
+  const resData = await response.json();
+  const token = resData.token;
+
+  localStorage.setItem('token', token);
+
   // soon: manage that token
   return redirect('/');
 };
