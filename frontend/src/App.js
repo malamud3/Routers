@@ -13,7 +13,7 @@ import ErrorPage from './pages/ErrorPage';
 import { action as formAction } from './components/EventForm';
 import NewsletterPage, { action as newsletterAction } from './pages/Newsletter';
 import AuthenticationPage, { AuthAction } from './pages/Authentication';
-
+import LogOutAction from './routers/Logout';
 const router = createBrowserRouter([
   {
     path: '/',
@@ -55,6 +55,10 @@ const router = createBrowserRouter([
         path: 'auth',
         element: <AuthenticationPage />,
         action: AuthAction,
+      },
+      {
+        path: 'logout',
+        action: LogOutAction,
       },
     ],
   },
