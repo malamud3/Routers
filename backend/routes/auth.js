@@ -1,9 +1,9 @@
-const express = require('express');
-const { add, get } = require('../data/user');
-const { createJSONToken, isValidPassword } = require('../util/auth');
-const { isValidEmail, isValidText } = require('../util/validation');
+import { Router } from 'express';
+import { add, get } from '../data/user';
+import { createJSONToken, isValidPassword } from '../util/auth';
+import { isValidEmail, isValidText } from '../util/validation';
 
-const router = express.Router();
+const router = Router();
 
 router.post('/signup', async (req, res, next) => {
   const data = req.body;
@@ -65,4 +65,4 @@ router.post('/login', async (req, res) => {
   res.json({ token });
 });
 
-module.exports = router;
+export default router;

@@ -1,14 +1,10 @@
-const express = require('express');
+import { Router } from 'express';
 
-const { getAll, get, add, replace, remove } = require('../data/event');
-const { checkAuth } = require('../util/auth');
-const {
-  isValidText,
-  isValidDate,
-  isValidImageUrl,
-} = require('../util/validation');
+import { getAll, get, add, replace, remove } from '../data/event';
+import { checkAuth } from '../util/auth';
+import { isValidText, isValidDate, isValidImageUrl } from '../util/validation';
 
-const router = express.Router();
+const router = Router();
 
 router.get('/', async (req, res, next) => {
   console.log(req.token);
@@ -113,4 +109,4 @@ router.delete('/:id', async (req, res, next) => {
   }
 });
 
-module.exports = router;
+export default router;
